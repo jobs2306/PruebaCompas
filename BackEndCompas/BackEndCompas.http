@@ -1,0 +1,6 @@
+@BackEndCompas_HostAddress = http://localhost:5121
+
+GET {{BackEndCompas_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
