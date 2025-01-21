@@ -136,3 +136,4 @@ C:\PROG\PruebaCompas\BackEndCompas\obj\Debug\net8.0\refint\BackEndCompas.dll
 C:\PROG\PruebaCompas\BackEndCompas\obj\Debug\net8.0\BackEndCompas.pdb
 C:\PROG\PruebaCompas\BackEndCompas\obj\Debug\net8.0\BackEndCompas.genruntimeconfig.cache
 C:\PROG\PruebaCompas\BackEndCompas\obj\Debug\net8.0\ref\BackEndCompas.dll
+C:\PROG\PruebaCompas\BackEndCompas\obj\Debug\net8.0\BackEndCompas.sourcelink.json
