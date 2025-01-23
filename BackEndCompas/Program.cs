@@ -2,6 +2,7 @@ using BackEndCompas.Data;
 using BackEndCompas.Services.Interfaces;
 using BackEndCompas.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +20,26 @@ builder.Services.AddScoped<IProductoService, ProductoService>();
 // Agregar controladores
 builder.Services.AddControllers();
 
-// Agregar el servicio de autorización (si es necesario)
+// Registrar IHttpClientFactory
+builder.Services.AddHttpClient(); 
+
+//servicio de autenticación
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.Authority = "http://localhost:8080/realms/ApiProductosRealm";
+    options.Audience = "BackEndCompas";
+    options.RequireHttpsMetadata = false; // Solo para desarrollo
+});
+
+// Agregar el servicio de autorización 
 builder.Services.AddAuthorization();
+
+
 
 var app = builder.Build();
 
@@ -32,6 +51,7 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

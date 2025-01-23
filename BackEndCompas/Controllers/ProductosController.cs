@@ -3,6 +3,7 @@ using BackEndCompas.Data;
 using BackEndCompas.Models;
 using Microsoft.EntityFrameworkCore;
 using BackEndCompas.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BackEndCompas.Controllers
 {
@@ -17,6 +18,7 @@ namespace BackEndCompas.Controllers
             _productoService = productoService;
         }
 
+        [Authorize(Roles = "writter,reader")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Producto>>> GetProductos()
         {
@@ -24,6 +26,7 @@ namespace BackEndCompas.Controllers
             return Ok(productos);
         }
 
+        [Authorize(Roles = "writter,reader")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> GetProducto(int id)
         {
@@ -32,6 +35,7 @@ namespace BackEndCompas.Controllers
             return Ok(producto);
         }
 
+        [Authorize(Roles = "writter")]
         [HttpPost]
         public async Task<ActionResult<Producto>> PostProducto(Producto producto)
         {
@@ -39,6 +43,7 @@ namespace BackEndCompas.Controllers
             return CreatedAtAction("GetProducto", new { id = nuevoProducto.Id }, nuevoProducto);
         }
 
+        [Authorize(Roles = "writter")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProducto(int id, Producto producto)
         {
@@ -47,12 +52,21 @@ namespace BackEndCompas.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "writter")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProducto(int id)
         {
             var resultado = await _productoService.DeleteProductoAsync(id);
             if (!resultado) return NotFound();
             return NoContent();
+        }
+
+
+        //para probar el servicio sin autenticación
+        [HttpGet("prueba")]
+        public async Task<IActionResult> Prueba()
+        {
+            return Ok();
         }
     }
 }
