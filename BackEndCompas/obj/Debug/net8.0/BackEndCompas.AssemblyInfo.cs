@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BackEndCompas")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+373d76e4ca9c79591e6156a9e1c8e30a0bebb9ed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a98bbe8b3eaa6fc6a731d3e4ddfc58cf72c43cf")]
 [assembly: System.Reflection.AssemblyProductAttribute("BackEndCompas")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BackEndCompas")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

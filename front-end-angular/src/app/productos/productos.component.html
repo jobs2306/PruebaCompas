@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <h2 class="text-center">Lista de Productos</h2>
+  
+    <!-- Tabla para mostrar productos -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ producto.precio }}</td>
+          <td>{{ producto.stock }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="modificarProducto(producto.id)">
+            Modificar
+            </button>
+            <button class="btn btn-danger" (click)="eliminarProducto(producto.id)">
+            Eliminar
+            </button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Botón para agregar producto -->
+    <button class="btn btn-success" (click)="nuevoProducto()">Agregar Producto</button>
+  </div>
+  
