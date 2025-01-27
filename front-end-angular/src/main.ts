@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'productos', component: ProductosComponent, canActivate: [AuthGuard] }, // se usa el guard para proteger la ruta /productos
-  { path: 'producto-form', component: ProductoFormComponent }, // Ruta para el formulario
+  { path: 'producto-form', component: ProductoFormComponent, canActivate: [AuthGuard]  }, // Ruta para el formulario
 ];
 
 bootstrapApplication(AppComponent, {

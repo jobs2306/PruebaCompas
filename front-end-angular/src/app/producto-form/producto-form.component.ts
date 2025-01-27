@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
+import { AppConfig } from '../../config';
+
+const apiUrl = AppConfig.apiUrl;
 
 @Component({
   selector: 'app-producto-form',
@@ -32,7 +35,7 @@ export class ProductoFormComponent {
       const token = localStorage.getItem('access_token');
       this.isEditing = true; // Está en modo edición
       this.http
-        .get(`http://localhost:5121/api/Productos/${productoId}`, {
+      .get(`${apiUrl}/Productos/${productoId}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .subscribe((data: any) => {
@@ -46,7 +49,7 @@ export class ProductoFormComponent {
     
     if (this.isEditing) {
       // Actualizar producto
-      this.http.put(`http://localhost:5121/api/Productos/${this.producto.id}`,
+      this.http.put(`${apiUrl}/Productos/${this.producto.id}`,
           this.producto,
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -64,7 +67,7 @@ export class ProductoFormComponent {
       });
     } else {
       // Crear producto
-      this.http.post('http://localhost:5121/api/Productos', this.producto, {
+      this.http.post(`${apiUrl}/Productos`, this.producto, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .subscribe(() => this.router.navigate(['/productos']),

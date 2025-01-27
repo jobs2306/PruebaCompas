@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-//import { environment } from '../../environment/environment.ts';
+import { AppConfig } from '../../config';
 
+
+const apiUrl = AppConfig.apiUrl;
 
 @Component({
   selector: 'app-productos',
@@ -13,6 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
+  
   productos: any[] = [];
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -24,7 +27,7 @@ export class ProductosComponent implements OnInit {
   obtenerProductos(): void {
     const token = localStorage.getItem('access_token');
     this.http
-      .get('http://localhost:5121/api/Productos', {
+      .get(`${apiUrl}/Productos`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .subscribe({
@@ -49,7 +52,7 @@ export class ProductosComponent implements OnInit {
     if (confirm('¿Estás seguro de eliminar este producto?')) {
       const token = localStorage.getItem('access_token');
       this.http
-        .delete(`http://localhost:5121/api/Productos/${id}`, {
+          .delete(`${apiUrl}/Productos/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .subscribe({
