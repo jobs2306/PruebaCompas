@@ -8,7 +8,7 @@ namespace FrontEndWinForm
 
         public static string AccessToken { get; set; }
 
-        //Cambiar por la URL local donde se ejecuta la API (no recomendado para producción)
+        //Cambiar por la URL local donde se ejecuta la API 
         public static string APiBaseUrl { get; set; } = "http://localhost:5121/api";
 
         [STAThread]
