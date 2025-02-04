@@ -10,9 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+/* //No se requiere por el uso de Procedimientos Almacenados
 // AppDbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+*/
 
 // Registrar servicios personalizados
 builder.Services.AddScoped<IProductoService, ProductoService>();
@@ -39,8 +41,6 @@ builder.Services.AddAuthentication(options =>
 // Agregar el servicio de autorización 
 builder.Services.AddAuthorization();
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -63,7 +63,3 @@ app.MapControllers();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

@@ -60,6 +60,10 @@ export class ProductoFormComponent {
         if (error.status == 403){
           alert('No tienes permiso para modificar este producto.');
         }
+        else if (error.status == 400) 
+        {
+          alert(error.error);
+        }
         else
         {
           alert('Ocurrió un error al intentar modificar el producto.');
@@ -75,8 +79,13 @@ export class ProductoFormComponent {
           if (error.status === 403) {
             alert('No tienes permiso para crear un producto.');
           } 
-          else {
-            alert('Ocurrió un error al intentar crear el producto.');
+          else if (error.status == 400) 
+          {
+            alert(error.error);
+          }
+          else
+          {
+            alert('Ocurrió un error al intentar modificar el producto.');
           }
         });
     }

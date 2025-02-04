@@ -50,7 +50,15 @@ namespace FrontEndWinForm
 
         private async void buttonCreateProd_Click(object sender, EventArgs e)
         {
+            //validar que estén llenas las cajas de texto.////
             // Crear un objeto Producto con los datos del formulario
+
+            if (string.IsNullOrEmpty(txtPrecio.Text))
+                txtPrecio.Text = "0";
+
+            if(string.IsNullOrEmpty(txtStock.Text))
+                txtStock.Text = "0";
+
             var producto = new Producto
             {
                 Nombre = txtNombre.Text,
@@ -59,13 +67,14 @@ namespace FrontEndWinForm
                 Stock = int.Parse(txtStock.Text)
             };
 
+
             // Enviar el producto a la API
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Program.AccessToken);
                 string link = Program.APiBaseUrl + "/Productos";
                 var response = await client.PostAsJsonAsync(link, producto);
-
+               
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Producto agregado correctamente");

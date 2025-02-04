@@ -1,59 +1,134 @@
-﻿using BackEndCompas.Data;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using BackEndCompas.Models;
-using Microsoft.EntityFrameworkCore;
 using BackEndCompas.Services.Interfaces;
 
 namespace BackEndCompas.Services
 {
     public class ProductoService : IProductoService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly string _connectionString;
 
-        public ProductoService(ApplicationDbContext context)
+        public ProductoService(IConfiguration configuration)
         {
-            _context = context;
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
         public async Task<IEnumerable<Producto>> GetProductosAsync()
         {
-            return await _context.Productos.ToListAsync();
+            var productos = new List<Producto>();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_GetProductos", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            productos.Add(new Producto
+                            {
+                                Id = reader.GetInt32(0),
+                                Nombre = reader.GetString(1),
+                                Descripcion = reader.GetString(2),
+                                Precio = reader.GetDecimal(3),
+                                Stock = reader.GetInt32(4)
+                            });
+                        }
+                    }
+                }
+            }
+            return productos;
         }
 
         public async Task<Producto?> GetProductoByIdAsync(int id)
         {
-            return await _context.Productos.FindAsync(id);
+            Producto? producto = null;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_GetProductoById", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    conn.Open();
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            producto = new Producto
+                            {
+                                Id = reader.GetInt32(0),
+                                Nombre = reader.GetString(1),
+                                Descripcion = reader.GetString(2),
+                                Precio = reader.GetDecimal(3),
+                                Stock = reader.GetInt32(4)
+                            };
+                        }
+                    }
+                }
+            }
+            return producto;
         }
 
         public async Task<Producto> AddProductoAsync(Producto producto)
         {
-            _context.Productos.Add(producto);
-            await _context.SaveChangesAsync();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_AddProducto", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
+                    cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
+                    cmd.Parameters.AddWithValue("@Precio", producto.Precio);
+                    cmd.Parameters.AddWithValue("@Stock", producto.Stock);
+
+                    conn.Open();
+                    producto.Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                }
+            }
             return producto;
         }
 
         public async Task<bool> UpdateProductoAsync(int id, Producto producto)
         {
-            var productoExistente = await _context.Productos.FindAsync(id);
-            if (productoExistente == null) return false;
+            int rowsAffected;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_UpdateProducto", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
+                    cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
+                    cmd.Parameters.AddWithValue("@Precio", producto.Precio);
+                    cmd.Parameters.AddWithValue("@Stock", producto.Stock);
 
-            productoExistente.Nombre = producto.Nombre;
-            productoExistente.Descripcion = producto.Descripcion;
-            productoExistente.Precio = producto.Precio;
-            productoExistente.Stock = producto.Stock;
-
-            _context.Entry(productoExistente).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return true;
+                    conn.Open();
+                    rowsAffected = await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            return rowsAffected > 0;
         }
 
         public async Task<bool> DeleteProductoAsync(int id)
         {
-            var producto = await _context.Productos.FindAsync(id);
-            if (producto == null) return false;
+            int rowsAffected;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_DeleteProducto", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", id);
 
-            _context.Productos.Remove(producto);
-            await _context.SaveChangesAsync();
-            return true;
+                    conn.Open();
+                    rowsAffected = await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            return rowsAffected > 0;
         }
     }
 }

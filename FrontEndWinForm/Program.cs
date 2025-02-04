@@ -5,7 +5,6 @@ namespace FrontEndWinForm
 {
     internal static class Program
     {
-
         public static string AccessToken { get; set; }
 
         //Cambiar por la URL local donde se ejecuta la API 

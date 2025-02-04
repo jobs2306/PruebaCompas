@@ -47,6 +47,10 @@ set KEYCLOAK_ADMIN_PASSWORD=admin
   ```bash
   bin/kc.bat export --dir=exports --users=realm_file
   ```
+- Para ejecutar modo dev:
+  ```bash
+  bin\kc.bat start-dev
+  ```
 
 #### Importar configuración de Keycloak
 

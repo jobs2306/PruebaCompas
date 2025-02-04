@@ -105,7 +105,6 @@ namespace FrontEndWinForm
             CargarProductos();
         }
 
-
         //Evento para verificar acceso
         private void Acceso()
         {
@@ -116,10 +115,12 @@ namespace FrontEndWinForm
                 buttChangeProd.Visible = false;
                 buttDeleteProd.Visible = false;
             }
+            /*
             else if (Program.HasRole("reader") == false)
             {
                 panel7.Visible = false;
             }
+            */
         }
 
         //Evento para cargar los productos
