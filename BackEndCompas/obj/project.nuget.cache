@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "uzQVZEgIJRI=",
+  "dgSpecHash": "/cYHGOYMc6k=",
   "success": true,
   "projectFilePath": "C:\\PROG\\PruebaCompas\\BackEndCompas\\BackEndCompas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joel\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\joel\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\joel\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\joel\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\joel\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",
     "C:\\Users\\joel\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.0\\microsoft.aspnetcore.openapi.8.0.0.nupkg.sha512",

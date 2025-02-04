@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\PROG\\PruebaCompas\\BackEndCompas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{38A175E2-1B60-45EE-8404-51FAAAB59291}|BackEndCompas.csproj|c:\\prog\\pruebacompas\\backendcompas\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38A175E2-1B60-45EE-8404-51FAAAB59291}|BackEndCompas.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{38A175E2-1B60-45EE-8404-51FAAAB59291}|BackEndCompas.csproj|c:\\prog\\pruebacompas\\backendcompas\\services\\productoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{38A175E2-1B60-45EE-8404-51FAAAB59291}|BackEndCompas.csproj|solutionrelative:services\\productoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38A175E2-1B60-45EE-8404-51FAAAB59291}|BackEndCompas.csproj|c:\\prog\\pruebacompas\\backendcompas\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38A175E2-1B60-45EE-8404-51FAAAB59291}|BackEndCompas.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{38A175E2-1B60-45EE-8404-51FAAAB59291}|BackEndCompas.csproj|c:\\prog\\pruebacompas\\backendcompas\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -39,26 +39,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ProductoService.cs",
               "DocumentMoniker": "C:\\PROG\\PruebaCompas\\BackEndCompas\\Services\\ProductoService.cs",
               "RelativeDocumentMoniker": "Services\\ProductoService.cs",
               "ToolTip": "C:\\PROG\\PruebaCompas\\BackEndCompas\\Services\\ProductoService.cs",
               "RelativeToolTip": "Services\\ProductoService.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAABUAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-04T18:46:51.305Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ProductosController.cs",
               "DocumentMoniker": "C:\\PROG\\PruebaCompas\\BackEndCompas\\Controllers\\ProductosController.cs",
               "RelativeDocumentMoniker": "Controllers\\ProductosController.cs",
               "ToolTip": "C:\\PROG\\PruebaCompas\\BackEndCompas\\Controllers\\ProductosController.cs",
               "RelativeToolTip": "Controllers\\ProductosController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAADgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-04T18:33:36.821Z",
               "EditorCaption": ""
