@@ -1,7 +1,0 @@
-<div *ngIf="!isAuthenticated(); else loggedIn">
-  <button (click)="login()">Iniciar Sesión</button>
-</div>
-
-<ng-template #loggedIn>
-  <p>Bienvenido! <button (click)="logout()">Cerrar Sesión</button></p>
-</ng-template>

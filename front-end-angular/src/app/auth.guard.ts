@@ -1,31 +1,28 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import {jwtDecode} from 'jwt-decode';
+import { KeycloakService } from 'keycloak-angular'; // 🔹 Importamos KeycloakService
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
-  canActivate(): boolean {
-    const token = localStorage.getItem('access_token');
-    if (token && !this.isTokenExpired(token)) {
-      return true; // El token existe y no ha expirado, permitir acceso
-    } else {
-      this.router.navigate(['/login']); // Redirigir al login si no hay token o está expirado
-      return false;
-    }
-  }
+  constructor(private router: Router, private keycloakService: KeycloakService) {}
 
-  private isTokenExpired(token: string): boolean {
+  async canActivate(): Promise<boolean> {
     try {
-      const decodedToken: any = jwtDecode(token); // Decodifica el token
-      const currentTime = Math.floor(Date.now() / 1000); // Tiempo actual en segundos
-      return decodedToken.exp < currentTime; // Verifica si ha expirado
+      const isAuthenticated = await this.keycloakService.isLoggedIn();
+      console.log("AuthGuard - Usuario autenticado:", isAuthenticated);
+
+      if (!isAuthenticated) {
+        console.warn("Usuario no autenticado. Redirigiendo a Keycloak...");
+        await this.keycloakService.login(); // Redirigir a Keycloak
+        return false;
+      }
+
+      return true;
     } catch (error) {
-      console.error('Error al decodificar el token:', error);
-      return true; // Si no se puede decodificar, asumimos que el token es inválido
+      console.error("Error en AuthGuard:", error);
+      return false;
     }
   }
 }

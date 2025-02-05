@@ -12,6 +12,6 @@ export function initializeKeycloak(keycloak: KeycloakService) {
         onLoad: 'login-required',  // 🔹 Asegurar que Keycloak obliga a iniciar sesión
         checkLoginIframe: false
       },
-      bearerExcludedUrls: ['/assets', '/login']
+      bearerExcludedUrls: ['/assets']
     });
 }

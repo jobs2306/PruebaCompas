@@ -38,7 +38,7 @@ keycloak.init({
       window.location.href = '/productos'; // Solo redirige si está en la raíz
     }
   }
-}).catch(error => console.error('⚠️ Error al inicializar Keycloak:', error));
+}).catch(error => console.error('Error al inicializar Keycloak:', error));
 
 // Bootstrap de la aplicación Angular
 bootstrapApplication(AppComponent, {
@@ -52,4 +52,4 @@ bootstrapApplication(AppComponent, {
     },
     { provide: KeycloakService, useValue: keycloak }
   ]
-}).catch(err => console.error('❌ Error al iniciar la aplicación:', err));
+}).catch(err => console.error('Error al iniciar la aplicación:', err));

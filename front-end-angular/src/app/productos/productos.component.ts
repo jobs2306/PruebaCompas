@@ -30,24 +30,24 @@ export class ProductosComponent implements OnInit {
       await new Promise(resolve => setTimeout(resolve, 200));
 
       const isAuthenticated = await this.keycloakService.isLoggedIn();
-      console.log("🔹 Keycloak autenticado:", isAuthenticated);
+      console.log("Keycloak autenticado:", isAuthenticated);
 
       if (!isAuthenticated) {
-        console.warn("❌ No autenticado. Redirigiendo a Keycloak...");
+        console.warn("No autenticado. Redirigiendo a Keycloak...");
         await this.keycloakService.login();
         return;
       }
 
       const token = await this.keycloakService.getToken();
-      console.log("🔹 Token obtenido:", token);
+      console.log("Token obtenido:", token);
 
       if (token) {
         this.obtenerProductos(token);
       } else {
-        console.warn("❌ No se obtuvo token válido.");
+        console.warn("No se obtuvo token válido.");
       }
     } catch (error) {
-      console.error("⚠️ Error verificando autenticación:", error);
+      console.error("Error verificando autenticación:", error);
     }
   }
 
@@ -56,13 +56,13 @@ export class ProductosComponent implements OnInit {
         headers: { Authorization: `Bearer ${token}` }
       }).subscribe({
         next: (data: any) => {
-          console.log("✅ Productos obtenidos:", data);
+          console.log("Productos obtenidos:", data);
           this.productos = data;
         },
         error: (err) => {
-          console.error("❌ Error al obtener productos:", err);
+          console.error("Error al obtener productos:", err);
           if (err.status === 401) {
-            console.warn("🔸 Token expirado. Redirigiendo a login...");
+            console.warn("Token expirado. Redirigiendo a login...");
             this.keycloakService.logout();
           }
         }
@@ -82,7 +82,7 @@ export class ProductosComponent implements OnInit {
       try {
         const token = await this.keycloakService.getToken(); 
         if (!token) {
-          console.warn("❌ No se pudo obtener el token para eliminar.");
+          console.warn("No se pudo obtener el token para eliminar.");
           await this.keycloakService.login();
           return;
         }
@@ -93,7 +93,7 @@ export class ProductosComponent implements OnInit {
           })
           .subscribe({
             next: () => {
-              console.log(`✅ Producto con ID ${id} eliminado.`);
+              console.log(`Producto con ID ${id} eliminado.`);
               this.obtenerProductos(token);
             },
             error: (err) => {
@@ -102,11 +102,11 @@ export class ProductosComponent implements OnInit {
               } else {
                 alert('Ocurrió un error al intentar eliminar el producto.');
               }
-              console.error('❌ Error al eliminar producto:', err);
+              console.error('Error al eliminar producto:', err);
             },
           });
       } catch (error) {
-        console.error("⚠️ Error al obtener el token:", error);
+        console.error("Error al obtener el token:", error);
       }
     }
   }

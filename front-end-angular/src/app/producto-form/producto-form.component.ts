@@ -46,37 +46,6 @@ export class ProductoFormComponent {
     }
   }
 
-  /*
-  async ngOnInit(): Promise<void> {
-    try {
-      const productoId = this.route.snapshot.queryParamMap.get('id');
-      if (productoId) {
-        this.isEditing = true; // Está en modo edición
-
-        const token = await this.keycloakService.getToken(); // Obtener token
-        console.log("🔹 Token obtenido:", token);
-
-        this.http
-          .get(`${apiUrl}/Productos/${productoId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-          .subscribe({
-            next: (data: any) => {
-              console.log("✅ Producto cargado:", data);
-              this.producto = data; // Cargar los datos en el formulario
-            },
-            error: (err) => {
-              console.error("❌ Error al obtener producto:", err);
-              alert("Error al cargar producto.");
-            },
-          });
-      }
-    } catch (error) {
-      console.error("⚠️ Error al inicializar el formulario:", error);
-    }
-  }
-    */
-
   async onSubmit(): Promise<void> {
     const token = await this.keycloakService.getToken();
     
