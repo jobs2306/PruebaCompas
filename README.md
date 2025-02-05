@@ -120,4 +120,3 @@ set KEYCLOAK_ADMIN_PASSWORD=admin
    ng serve
    ```
 4. La aplicación estará disponible en `http://localhost:4200`.
-

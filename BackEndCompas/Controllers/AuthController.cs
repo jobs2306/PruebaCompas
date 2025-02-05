@@ -35,7 +35,7 @@ namespace BackEndCompas.Controllers
             };
 
             var content = new FormUrlEncodedContent(parameters);
-
+            
             var response = await client.PostAsync("http://localhost:8080/realms/ApiProductosRealm/protocol/openid-connect/token", content);
 
             if (!response.IsSuccessStatusCode)
